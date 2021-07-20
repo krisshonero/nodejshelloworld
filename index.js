@@ -1,14 +1,13 @@
-const http = require('http');
-const dotenv = require("dotenv").config();
-const hostname = 'localhost';
-const port = 8080;
+var express = require('express')
+var app = express()
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World');
-});
+app.set('port', (process.env.PORT || 5000))
+app.use(express.static(__dirname + '/public'))
 
-server.listen(process.env.PORT || 5000, hostname, () => {
-  console.log('Server running at');
-});
+app.get('/', function(request, response) {
+  response.send('Hello World!')
+})
+
+app.listen(app.get('port'), function() {
+  console.log("Node app is running at localhost:" + app.get('port'))
+})
