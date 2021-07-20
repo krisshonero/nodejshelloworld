@@ -1,5 +1,5 @@
 const http = require('http');
-
+const dotenv = require("dotenv").config();
 const hostname = 'localhost';
 const port = 8080;
 
@@ -9,6 +9,6 @@ const server = http.createServer((req, res) => {
   res.end('Hello World');
 });
 
-server.listen(port, hostname, () => {
+server.listen(process.env.PORT || 5000, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
